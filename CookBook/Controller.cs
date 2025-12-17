@@ -8,10 +8,6 @@ namespace CookBook
     {
         public static void Run(List<Recipe> recipes)
         {
-            //foreach (var recipe in recipes)
-            //{
-            //    recipe.PrintRecipeNames();
-            //}
             while (true)
             {
                 PrintIntroMenu();
@@ -44,7 +40,9 @@ namespace CookBook
         {
             Console.Clear();
             var categories = new List<string> { "Breakfast", "Lunch", "Dinner", "Dessert", "Vegetarian", "Vegan", "Quick", "Comfort Food", "Italian", "Mexican", "Asian", "Healthy" };
+            
             Console.WriteLine("What kind of food do you want to make?");
+
             for (int i = 0; i < categories.Count; i++)
             {
                 Console.WriteLine(i + ": " + categories[i]);
@@ -52,6 +50,7 @@ namespace CookBook
 
             int input = Convert.ToInt32(Console.ReadLine());
             var selectedCategory = categories[input];
+
             List<Recipe> filteredList = recipes.Where(recipe => recipe.Categories.Contains(selectedCategory)).ToList();
             return filteredList;
         }
@@ -60,6 +59,7 @@ namespace CookBook
         {
             Console.Clear();
             var ingredients = new List<string> { "Eggs", "Chicken", "Beef", "Pasta", "Rice", "Tomatoes", "Cheese", "Beans", "Potatoes", "Spinach" };
+            
             Console.WriteLine("What do you want to cook with?");
 
             for (int i = 0; i < ingredients.Count; i++)

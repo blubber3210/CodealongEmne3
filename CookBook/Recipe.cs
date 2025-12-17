@@ -30,7 +30,6 @@ namespace CookBook
             Console.WriteLine("Type index num to view");
             int input = Convert.ToInt32(Console.ReadLine());
             recipes[input].PrintRecipeInfo();
-
         }
 
         private void PrintRecipeInfo()
