@@ -17,20 +17,6 @@ namespace CodealongEmne3
             Category = category;
         }
 
-        public void ShowListOfRecipes(List<Oppskrift> recipesList)
-        {
-            Console.WriteLine("List of recipes: ");
-
-            foreach (Oppskrift recipe in recipesList)
-            {
-                Console.WriteLine($"Oppskrift nummer {recipesList.IndexOf(recipe)} :" + recipe.Name);
-            }
-
-            Console.WriteLine("Type number to view recipe");
-            int userInput = Convert.ToInt32(Console.ReadLine());
-
-
-        }
 
     }
 }
