@@ -12,6 +12,7 @@ namespace CookBook
             while (true)
             {
                 PrintIntroMenu();
+
                 int input = Convert.ToInt32(Console.ReadLine());
 
                 if (input == 1) Recipe.PrintRecipeNames(recipes);
