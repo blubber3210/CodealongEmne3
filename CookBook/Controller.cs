@@ -6,8 +6,9 @@ namespace CookBook
 {
     internal class Controller
     {
-        public static void Run(List<Recipe> recipes)
+        public void Run()
         {
+            var recipes = InitRecipes();
             while (true)
             {
                 PrintIntroMenu();
@@ -24,11 +25,11 @@ namespace CookBook
                     var filteredList = PrintIngredientMenu(recipes);
                     Recipe.PrintRecipeNames(filteredList);
                 }
-                else Run(recipes);
+                else Run();
             }
         }
 
-        private static void PrintIntroMenu()
+        private void PrintIntroMenu()
         {
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("1. View all recipes");
@@ -36,7 +37,7 @@ namespace CookBook
             Console.WriteLine("3. Search by ingredients");
         }
 
-        private static List<Recipe> PrintCategoryMenu(List<Recipe> recipes)
+        private List<Recipe> PrintCategoryMenu(List<Recipe> recipes)
         {
             Console.Clear();
             var categories = new List<string> { "Breakfast", "Lunch", "Dinner", "Dessert", "Vegetarian", "Vegan", "Quick", "Comfort Food", "Italian", "Mexican", "Asian", "Healthy" };
@@ -55,7 +56,7 @@ namespace CookBook
             return filteredList;
         }
 
-        private static List<Recipe> PrintIngredientMenu(List<Recipe> recipes)
+        private List<Recipe> PrintIngredientMenu(List<Recipe> recipes)
         {
             Console.Clear();
             //var ingredients = new List<string> { "Eggs", "Chicken", "Beef", "Pasta", "Rice", "Tomatoes", "Cheese", "Beans", "Potatoes", "Spinach" };
@@ -73,6 +74,64 @@ namespace CookBook
             var filteredList = Recipe.FilterList(recipes, selectedIngredient, "ingredient");
             //List<Recipe> filteredList = recipes.Where(recipe => recipe.Ingredients.Contains(selectedIngredient)).ToList();
             return filteredList;
+        }
+
+        private List<Recipe> InitRecipes()
+        {
+            var recipes = new List<Recipe>
+            {
+                new Recipe("Classic Pancakes",
+                    "Fluffy breakfast pancakes served warm with syrup or fruit.",
+                    ["Flour", "Milk", "Eggs", "Butter", "Sugar"],
+                    ["Breakfast", "Vegetarian", "Comfort Food"]),
+
+                new Recipe("Spaghetti Bolognese",
+                    "Traditional Italian pasta with a rich beef and tomato sauce.",
+                    ["Pasta", "Beef", "Tomatoes", "Onion", "Garlic", "Olive Oil"],
+                    ["Dinner", "Italian", "Comfort Food"]),
+
+                new Recipe("Veggie Stir-Fry",
+                    "Quick stir-fried vegetables in a savory soy sauce glaze.",
+                    ["Bell Pepper", "Onion", "Garlic", "Spinach", "Soy Sauce", "Olive Oil"],
+                    ["Dinner", "Vegan", "Asian", "Quick"]),
+
+                new Recipe("Chicken Fried Rice",
+                    "Classic fried rice with chicken, eggs, and vegetables.",
+                    ["Rice", "Chicken", "Egg", "Onion", "Soy Sauce", "Garlic"],
+                    ["Lunch", "Dinner", "Asian"]),
+
+                new Recipe("Caprese Salad",
+                    "Fresh salad with tomatoes, cheese, and olive oil.",
+                    ["Tomatoes", "Cheese", "Olive Oil"],
+                    ["Lunch", "Vegetarian", "Healthy", "Quick", "Italian"]),
+
+                new Recipe("Beef Tacos",
+                    "Seasoned beef served in tacos with fresh toppings.",
+                    ["Beef", "Onion", "Bell", "Pepper", "Tomatoes", "Cheese"],
+                    ["Dinner", "Mexican", "Comfort Food"]),
+
+                new Recipe("Baked Potatoes with Garlic Butter",
+                    "Oven-baked potatoes topped with melted garlic butter.",
+                    ["Potatoes", "Butter", "Garlic"],
+                    ["Side Dish", "Vegetarian", "Comfort Food"]),
+
+                new Recipe("Spinach Omelette",
+                    "Light omelette filled with sautéed spinach and cheese.",
+                    ["Eggs", "Spinach", "Cheese", "Butter"],
+                    ["Breakfast", "Vegetarian", "Quick"]),
+
+                new Recipe("Tomato Soup",
+                    "Smooth and warm tomato soup, perfect for cold days.",
+                    ["Tomatoes", "Onion", "Garlic", "Olive Oil"],
+                    ["Lunch", "Dinner", "Vegan", "Comfort Food"]),
+
+                new Recipe("Simple Fruit Dessert",
+                    "Light dessert made with fresh fruit and a touch of sugar.",
+                    ["Sugar", "Fruit"],
+                    ["Dessert", "Vegan", "Healthy", "Quick"])
+
+            };
+            return recipes;
         }
     }
 }

@@ -19,7 +19,6 @@ namespace CookBook
             Categories = categories;
         }
 
-
         public static void PrintRecipeNames(List<Recipe> recipes)
         {
             Console.Clear();
