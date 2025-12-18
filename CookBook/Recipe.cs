@@ -6,10 +6,10 @@ namespace CookBook
 {
     internal class Recipe
     {
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public List<string> Ingredients { get; private set; }
-        public List<string> Categories { get; private set; }
+        private string Name;
+        private string Description;
+        private List<string> Ingredients;
+        private List<string> Categories;
 
         public Recipe(string name, string description, List<string> ingredients, List<string> categories)
         {
@@ -30,6 +30,23 @@ namespace CookBook
             Console.WriteLine("Type index num to view");
             int input = Convert.ToInt32(Console.ReadLine());
             recipes[input].PrintRecipeInfo();
+        }
+
+        public static List<Recipe> FilterList(List<Recipe> recipes, string selectedFilter, string categoryOrIngredient)
+        {
+            List<Recipe> filteredList;
+
+            if (categoryOrIngredient == "ingredient")
+            {
+                filteredList = recipes.Where(recipe => recipe.Ingredients.Contains(selectedFilter)).ToList();
+                return filteredList;
+            }
+            if (categoryOrIngredient == "category")
+            {
+                filteredList = recipes.Where(recipe => recipe.Categories.Contains(selectedFilter)).ToList();
+                return filteredList;
+            }
+            return recipes;
         }
 
         private void PrintRecipeInfo()

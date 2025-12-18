@@ -50,16 +50,17 @@ namespace CookBook
 
             int input = Convert.ToInt32(Console.ReadLine());
             var selectedCategory = categories[input];
-
-            List<Recipe> filteredList = recipes.Where(recipe => recipe.Categories.Contains(selectedCategory)).ToList();
+            var filteredList = Recipe.FilterList(recipes, selectedCategory, "category");
+            //List<Recipe> filteredList = recipes.Where(recipe => recipe.Categories.Contains(selectedCategory)).ToList();
             return filteredList;
         }
 
         private static List<Recipe> PrintIngredientMenu(List<Recipe> recipes)
         {
             Console.Clear();
-            var ingredients = new List<string> { "Eggs", "Chicken", "Beef", "Pasta", "Rice", "Tomatoes", "Cheese", "Beans", "Potatoes", "Spinach" };
-            
+            //var ingredients = new List<string> { "Eggs", "Chicken", "Beef", "Pasta", "Rice", "Tomatoes", "Cheese", "Beans", "Potatoes", "Spinach" };
+            var ingredients = new List<string> { "Eggs", "Milk", "Butter", "Flour", "Sugar", "Chicken", "Beef", "Pasta", "Rice", "Tomatoes", "Onion", "Garlic", "Bell Pepper", "Cheese", "Olive Oil", "Soy Sauce", "Beans", "Potatoes", "Spinach" };
+
             Console.WriteLine("What do you want to cook with?");
 
             for (int i = 0; i < ingredients.Count; i++)
@@ -69,8 +70,8 @@ namespace CookBook
 
             int input = Convert.ToInt32(Console.ReadLine());
             var selectedIngredient = ingredients[input];
-            
-            List<Recipe> filteredList = recipes.Where(recipe => recipe.Ingredients.Contains(selectedIngredient)).ToList();
+            var filteredList = Recipe.FilterList(recipes, selectedIngredient, "ingredient");
+            //List<Recipe> filteredList = recipes.Where(recipe => recipe.Ingredients.Contains(selectedIngredient)).ToList();
             return filteredList;
         }
     }
