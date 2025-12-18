@@ -13,7 +13,9 @@ namespace CookBook
             {
                 PrintIntroMenu();
                 int input = Convert.ToInt32(Console.ReadLine());
+
                 if (input == 1) Recipe.PrintRecipeNames(recipes);
+
                 if (input == 2)
                 {
                     var filteredList = PrintCategoryMenu(recipes);
@@ -25,6 +27,7 @@ namespace CookBook
                     var filteredList = PrintIngredientMenu(recipes);
                     Recipe.PrintRecipeNames(filteredList);
                 }
+
                 else Run();
             }
         }
